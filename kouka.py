@@ -449,8 +449,19 @@ class Game:
     def draw(self):
         #self.screen.fill(BLACK)  各状態で背景を描く
         if self.state == STATE_MAP:
-            self.screen.fill(BLACK)
-            self.draw_map_elements()
+            if self.current_map == MAP_VILLAGE:
+                if self.bg_village:
+                    self.screen.blit(self.bg_village, (0, 0))
+
+                else:
+                    self.screen.fill(BLACK)
+                    self.draw_map_elements()
+
+                # キャラクター描画
+                if self.player_img:
+                    self.screen.blit(self.player_img, self.player_pos)
+                else:
+                    pygame.draw.rect(self.screen, RED, (*self.player_pos, self.player_size, self.player_size))
 
         elif self.state == STATE_BATTLE:
             self.screen.fill(BLACK)
