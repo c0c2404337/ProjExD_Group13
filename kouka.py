@@ -3,6 +3,8 @@ import sys
 import random
 import os # C0A24265
 
+import MapField
+
 # --- 資料の必須要件: 実行ディレクトリをファイルのある場所に固定 ---
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -62,6 +64,11 @@ class Game:
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("RPG 工科クエスト")
         self.clock = pygame.time.Clock()
+
+        # 戦闘メッセージなど用の小さいフォント
+        self.msg_font = self.get_japanese_font(20)
+        
+        self.small_font = self.get_japanese_font(24)
         
         try:
             self.font = pygame.font.SysFont("meiryo", 32)
